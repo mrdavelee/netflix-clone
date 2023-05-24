@@ -16,9 +16,9 @@ const Auth = () => {
                 <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md w-full">
                     <h2 className="text-white text-4xl mb-8 font-semibold">Sign in</h2>
                     <div className="flex flex-col gap-4">
-                    <Input value='Email' id='email' label='Email' onChange={(e) => setEmail(e.target.value)} type='email'/>
-                    <Input value='username' id='username' label='Username' onChange={(e) => setUsername(e.target.value)} />
-                    <Input value='password' id='password' label='Password' onChange={(e) => setPassword(e.target.value)} type='password'/>
+                    <Input value='Email' id='email' label='Email' onChange={(e: any) => setEmail(e.target.value)} type='email'/>
+                    <Input value='username' id='username' label='Username' onChange={(e: any) => setUsername(e.target.value)} />
+                    <Input value='password' id='password' label='Password' onChange={(e: any) => setPassword(e.target.value)} type='password'/>
                     </div>
                 </div>
             </div>

@@ -21,21 +21,23 @@ const Auth = () => {
             <div className="flex justify-center">
                 <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md w-full">
                     <h2 className="text-white text-4xl mb-8 font-semibold">
-                        {variant == 'login' ? 'Sign in' : 'Register'}
+                        { variant === 'login' ? 'Sign in' : 'Register' }
                     </h2>
                     <div className="flex flex-col gap-4">
-                        {variant == 'register' && (
+                        { variant === 'register' && (
                             <Input value='Email' id='email' label='Email' onChange={(e: any) => setEmail(e.target.value)} type='email'/>
-                        )}
+                        ) }
                         <Input value='username' id='username' label='Username' onChange={(e: any) => setUsername(e.target.value)} />
                         <Input value='password' id='password' label='Password' onChange={(e: any) => setPassword(e.target.value)} type='password'/>
                     </div>
                     <button className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
-                        {variant == 'login' ? 'Login' : 'Sign up'}
+                        {variant === 'login' ? 'Login' : 'Sign up'}
                     </button>
                     <p className="text-neutral-500 mt-12">
-                        New to Daveflix?
-                        <span onClick={ toggleVariant } className="text-white ml-1 hover:underline cursor-pointer">Create an account</span>
+                        { variant === 'login' ? 'New to Daveflix?' : 'Already have an account?' }
+                        <span onClick={ toggleVariant } className="text-white ml-1 hover:underline cursor-pointer">
+                        { variant == 'login' ? 'Create an account' : 'Login' }
+                        </span>
                     </p>
                 </div>
             </div>

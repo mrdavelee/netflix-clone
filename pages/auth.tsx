@@ -22,28 +22,32 @@ const Auth = () => {
 
     const login = useCallback(async () => {
         try {
-            await signIn('credentials', {
-                email,
-                password,
-                redirect: false,
-                callbackUrl: '/'
-            })
-            router.push('/')
+          await signIn('credentials', {
+            email,
+            password,
+            redirect: false,
+            callbackUrl: '/'
+          })
+    
+          router.push('/');
         } catch (error) {
-            console.log(error)
+          console.log(error);
         }
-    }, [email, password, router])
-
-    const register = useCallback(async () => {
+      }, [email, password, router])
+    
+      const register = useCallback(async () => {
         try {
-             await axios.post('/api/register', {
-                email, name, password
-             })
-             login()
+          await axios.post('/api/register', {
+            email,
+            name,
+            password
+          })
+    
+          login();
         } catch (error) {
             console.log(error)
         }
-    }, [email, name, password, login])
+      }, [email, name, password, login])
 
     return (
       <div  className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
@@ -67,7 +71,7 @@ const Auth = () => {
                         {variant === 'login' ? 'Login' : 'Sign up'}
                     </button>
                     <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-                        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center curser-pointer hover:opacity-80 transition">
+                        <div onClick={() => signIn('google', { callbackUrl: '/' })} className="w-10 h-10 bg-white rounded-full flex items-center justify-center curser-pointer hover:opacity-80 transition">
                             <FcGoogle size={30} />
                         </div>
                         <div onClick={() => signIn('github', { callbackUrl: '/' })} className="w-10 h-10 bg-white rounded-full flex items-center justify-center curser-pointer hover:opacity-80 transition">

@@ -15,7 +15,7 @@ model User {
   name            String
   image           String?
   email           String?   @unique
-  emailVerified   DateTime? 
+  emailVerified   DateTime? @map("email_verified")
   hashedPassword  String?
   createdAt       DateTime  @default(now())
   updated         DateTime  @updatedAt
@@ -26,28 +26,28 @@ model User {
 
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String  @db.ObjectId
+  userId            String  @db.ObjectId @map("user_id")
   type              String
-  providerAccountId String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
   refresh_token     String? @db.String
   access_token      String? @db.String
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.String
+  id_token          String? 
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([providerAccountId])
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken String @unique
-  userId String @db.ObjectId
-  expires DateTime
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken  String    @map("session_token") @unique
+  userId        String    @map("access_token") @db.ObjectId
+  expires       DateTime
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
